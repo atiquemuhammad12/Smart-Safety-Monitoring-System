@@ -1,19 +1,51 @@
 START
-    INPUT watts, hours
-    energy = (watts / 1000) * hours
-    ADD energy TO totalEnergy
-    
-    IF totalEnergy > 8 THEN
-        apply 20% surcharge
-    END IF
-    
-    cost = energy * 0.50
-    
-    DISPLAY totalEnergy
-    DISPLAY cost
-    DISPLAY surcharge
+
+INPUT Equipment ID
+
+SET index = findEquipment(ID)
+
+IF index == -1 THEN
+
+    DISPLAY "Equipment Not Found"
+    STOP
+
+ENDIF
+
+INPUT Hours Used
+
+IF Hours Used < 0 OR Hours Used > 24 THEN
+
+    DISPLAY "Invalid Hours"
+    STOP
+
+ENDIF
+
+INPUT Current Temperature
+
+accumulatedHours = accumulatedHours + hoursUsed
+
+IF temperature > maxTemp THEN
+
+    status = "CRITICAL"
+
+ELSE IF temperature >= (0.9 * maxTemp) THEN
+
+    status = "WARNING"
+
+ELSE
+
+    status = "NORMAL"
+
+ENDIF
+
+DISPLAY Equipment Status
+
+IF accumulatedHours >= maintenanceInterval THEN
+
+    DISPLAY "Maintenance Required"
+
+ENDIF
+
 END
-
-
 
 

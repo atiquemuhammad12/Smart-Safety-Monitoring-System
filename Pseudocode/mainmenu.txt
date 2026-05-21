@@ -1,0 +1,43 @@
+START
+
+DO
+
+    DISPLAY "===== SMART WORKSHOP SYSTEM ====="
+    DISPLAY "1. Add Equipment"
+    DISPLAY "2. Update Usage and Temperature"
+    DISPLAY "3. Display Equipment Information"
+    DISPLAY "4. Generate Energy Report"
+    DISPLAY "5. Exit"
+
+    INPUT choice
+
+    SWITCH(choice)
+
+        CASE 1:
+            CALL addEquipment()
+            BREAK
+
+        CASE 2:
+            CALL updateUsage()
+            BREAK
+
+        CASE 3:
+            CALL displayEquipment()
+            BREAK
+
+        CASE 4:
+            CALL generateReport()
+            BREAK
+
+        CASE 5:
+            DISPLAY "Exiting System"
+            BREAK
+
+        DEFAULT:
+            DISPLAY "Invalid Choice"
+
+    END SWITCH
+
+WHILE choice != 5
+
+END

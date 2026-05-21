@@ -1,37 +1,39 @@
-FUNCTION GenerateDailyReport()
+START
 
-DECLARE totalEnergy = 0
-DECLARE cost
-DECLARE surcharge = 0
+SET totalEnergy = 0
 
-FOR i = 0 TO equipmentCount - 1
+FOR i = 0 TO countEq - 1
 
-    energy = (watts[i] / 1000) * hoursUsed[i]
+    energy = (power / 1000) * hoursUsed
 
     totalEnergy = totalEnergy + energy
 
-ENDFOR
+END FOR
 
 cost = totalEnergy * 0.50
 
 IF totalEnergy > 8 THEN
+
     surcharge = cost * 0.20
+
+ELSE
+
+    surcharge = 0
+
 ENDIF
 
 finalCost = cost + surcharge
 
-DISPLAY "------ DAILY ENERGY REPORT ------"
-DISPLAY "Total Energy:", totalEnergy, "kWh"
-DISPLAY "Cost: RM", cost
-DISPLAY "Surcharge: RM", surcharge
-DISPLAY "Final Cost: RM", finalCost
+DISPLAY "Total Energy Consumption"
+DISPLAY totalEnergy
 
-FOR i = 0 TO equipmentCount - 1
+DISPLAY "Electricity Cost"
+DISPLAY cost
 
-    IF accumulatedHours[i] >= maintenanceInterval[i] THEN
-        DISPLAY "Maintenance Due for Equipment ID:", equipmentID[i]
-    ENDIF
+DISPLAY "Surcharge"
+DISPLAY surcharge
 
-ENDFOR
+DISPLAY "Final Cost"
+DISPLAY finalCost
 
-END FUNCTION
+END
